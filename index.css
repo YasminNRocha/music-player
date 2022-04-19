@@ -80,3 +80,7 @@ body {
 .fas:hover {
     transform: scale(1.1);
 }
+.timer {
+    font: bold .7rem arial,sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+}

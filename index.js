@@ -11,6 +11,9 @@ let btnBack = document.getElementById('back')
 let progress = document.getElementById('pregress-bar-content')
 let progressContainer = document.getElementById('progress-bar-base')
 
+let totalTime = document.getElementById('total-time')
+let nowTime = document.getElementById('current-time')
+
 let songs = ['love you like', 'always', 'zzz']
 let artists = ['viviz', 'dreamcatcher', 'youha']
 
@@ -70,6 +73,7 @@ function updateTime(p) {
     let {duration, currentTime} = p.srcElement;
     let progressPercent = currentTime / duration * 100;
     progress.style.width = `${progressPercent}%`
+
 }
 
 function setTime(e) {
@@ -78,7 +82,30 @@ function setTime(e) {
     let duration = audio.duration
 
     audio.currentTime = (clickX / width) * duration;
+
 }
+
+function timer(e) {
+    let {duration, currentTime} = e.srcElement;
+
+    let minutes = Math.floor(currentTime / 60)
+    let seconds = Math.floor(currentTime % 60)
+    seconds = seconds < 10 ? 0 + `${seconds}` : `${seconds}`
+
+    let fullTimeM = Math.floor(duration / 60)
+    let fullTimeS = Math.floor(duration % 60)
+
+    nowTime.innerHTML = `${minutes}:${seconds}`
+    totalTime.innerHTML = `${fullTimeM}:${fullTimeS}`
+
+    if(isNaN(fullTimeM, fullTimeS)) {
+        totalTime.innerHTML = "0:00"
+    }
+    else{
+    totalTime.innerHTML = `${fullTimeM}:${fullTimeS}`
+    }
+}   
+
 
 btnPlay.addEventListener('click', () => {
     let isPlaying = musicContainer.classList.contains('play')
@@ -98,5 +125,6 @@ audio.addEventListener('timeupdate', updateTime)
 progressContainer.addEventListener('click', setTime)
 
 audio.addEventListener('timeupdate', timer)
+audio.addEventListener ('ended', nextSong)
 
 
