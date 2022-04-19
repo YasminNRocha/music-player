@@ -13,7 +13,7 @@ body {
 }
 #music-container {
     width: 300px;
-    height: 425px;
+    height: 440px;
     padding: 1rem;
     background-color: rgb(9, 54, 109);
     border-radius: 2.5rem;
@@ -83,4 +83,36 @@ body {
 .timer {
     font: bold .7rem arial,sans-serif;
     color: rgba(255, 255, 255, 0.7);
+}
+#volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5%;
+    gap: .3rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: .5rem;
+}
+#volume-icon {
+    font-size: .85rem;
+}
+input[type='range'],
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+
+}
+input[type='range']::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    position: relative;
+    width: 200px;
+    height: 5px;
+    background-color: rgb(13, 69, 137);
+}
+input[type="range"]::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+    margin-top: -3.5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5rem;
 }

@@ -11,6 +11,9 @@ let btnBack = document.getElementById('back')
 let progress = document.getElementById('pregress-bar-content')
 let progressContainer = document.getElementById('progress-bar-base')
 
+let volume = document.querySelector('#volume')
+let btnVolume = document.getElementById('volume-icon')
+
 let totalTime = document.getElementById('total-time')
 let nowTime = document.getElementById('current-time')
 
@@ -68,7 +71,6 @@ function backSong() {
     playSong()
 
 }
-
 function updateTime(p) {
     let {duration, currentTime} = p.srcElement;
     let progressPercent = currentTime / duration * 100;
@@ -106,6 +108,20 @@ function timer(e) {
     }
 }   
 
+function muteSong(e) {
+    if(audio.muted) {
+        audio.muted = false
+        btnVolume.classList.add('fa-volume-high')
+        btnVolume.classList.remove('fa-volume-xmark')
+        volume.value = 50
+    }
+    else {
+        audio.muted = true
+        btnVolume.classList.remove('fa-volume-high')
+        btnVolume.classList.add('fa-volume-xmark')
+        volume.value = 0
+    }
+}
 
 btnPlay.addEventListener('click', () => {
     let isPlaying = musicContainer.classList.contains('play')
@@ -118,6 +134,9 @@ btnPlay.addEventListener('click', () => {
     }
 })
 
+
+
+
 btnNext.addEventListener('click', nextSong)
 btnBack.addEventListener('click', backSong)
 
@@ -127,4 +146,10 @@ progressContainer.addEventListener('click', setTime)
 audio.addEventListener('timeupdate', timer)
 audio.addEventListener ('ended', nextSong)
 
+
+volume.addEventListener('change', function(e) {
+    audio.volume = e.currentTarget.value / 100;
+})
+
+btnVolume.addEventListener('click', muteSong)
 
